@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mãos Cheias de Amor - Projeto de Voluntariado</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">Escola Paulo de Tarso</div>
+            <ul class="nav-links">
+                <li><a href="#hero">Início</a></li>
+                <li><a href="#voluntariado">Voluntariado</a></li>
+                <li><a href="#causa">Causa</a></li>
+                <li><a href="#projeto">Projeto</a></li>
+                <li><a href="#inscrever">Inscrever-se</a></li>
+                <li><a href="#creditos">Créditos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Botão Tema -->
+    <button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 1V3M12 21V23M4.22 4.22L5.64 5.64M18.36 18.36L19.78 19.78M1 12H3M21 12H23M4.22 19.78L5.64 18.36M18.36 5.64L19.78 4.22" stroke="currentColor" stroke-width="2"/>
+        </svg>
+    </button>
+
+    <!-- Hero -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <h1 class="fade-in-up">Cada doação é um sorriso que você nunca vai esquecer.</h1>
+            <p class="fade-in-up">Projeto Mãos Cheias de Amor — Escola Paulo de Tarso</p>
+            <div class="buttons fade-in-up">
+                <a href="#inscrever" class="btn btn-primary">Quero ser voluntário!</a>
+                <a href="#causa" class="btn btn-secondary">Saiba mais</a>
+            </div>
+            <div class="counter fade-in-up" id="volunteer-counter">0 voluntários já confirmados!</div>
+        </div>
+    </section>
+
+    <!-- Ano do Voluntariado -->
+    <section id="voluntariado" class="section">
+        <h2>Ano do Voluntariado</h2>
+        <p>O voluntariado é a ação de dedicar tempo e habilidades para ajudar os outros sem esperar recompensa financeira. Em 2026, a ONU declara o Ano Internacional dos Voluntários para o Desenvolvimento Sustentável.</p>
+        <div class="cards">
+            <div class="card reveal">
+                <div class="image-placeholder">
+                    <svg class="illustration" viewBox="0 0 120 96" role="img" aria-label="Imagem de mãos em volta do mundo">
+                        <circle cx="60" cy="48" r="34" fill="currentColor" opacity="0.12"/>
+                        <path d="M60 20c-10 0-18 6-22 14 4 4 10 6 16 6s12-2 16-6c-4-8-12-14-22-14z" fill="currentColor" opacity="0.3"/>
+                        <path d="M38 48c0-12 6-22 14-26-8 4-14 14-14 26s6 22 14 26c-8-4-14-14-14-26z" fill="currentColor" opacity="0.4"/>
+                        <path d="M82 48c0-12-6-22-14-26 8 4 14 14 14 26s-6 22-14 26c8-4 14-14 14-26z" fill="currentColor" opacity="0.4"/>
+                        <path d="M60 54c-12 0-22 6-22 14h44c0-8-10-14-22-14z" fill="currentColor" opacity="0.35"/>
+                    </svg>
+                </div>
+                <h3>Impacto Global</h3>
+                <p>Voluntários ajudam a alcançar os Objetivos de Desenvolvimento Sustentável da ONU.</p>
+            </div>
+            <div class="card reveal">
+                <div class="image-placeholder">
+                    <svg class="illustration" viewBox="0 0 120 96" role="img" aria-label="Imagem de coração nas mãos">
+                        <path d="M30 46c0-10 8-18 18-18 4 0 8 2 10 5 2-3 6-5 10-5 10 0 18 8 18 18 0 16-24 28-28 30-4-2-28-14-28-30z" fill="currentColor" opacity="0.18"/>
+                        <path d="M42 50c0-8 6-14 14-14s14 6 14 14-6 12-14 18c-8-6-14-10-14-18z" fill="currentColor" opacity="0.45"/>
+                        <path d="M20 76c0-10 12-16 20-16h40c8 0 20 6 20 16v8H20v-8z" fill="currentColor" opacity="0.32"/>
+                    </svg>
+                </div>
+                <h3>Compromisso Social</h3>
+                <p>Construir comunidades mais fortes e solidárias.</p>
+            </div>
+            <div class="card reveal">
+                <div class="image-placeholder">
+                    <svg class="illustration" viewBox="0 0 120 96" role="img" aria-label="Imagem de mãos apertando-se">
+                        <rect x="24" y="38" width="20" height="20" rx="10" fill="currentColor" opacity="0.2"/>
+                        <rect x="76" y="38" width="20" height="20" rx="10" fill="currentColor" opacity="0.2"/>
+                        <path d="M44 48l16 10 16-10" stroke="currentColor" stroke-width="8" fill="none" stroke-linecap="round"/>
+                        <path d="M52 56l8 12 8-12" stroke="currentColor" stroke-width="8" fill="none" stroke-linecap="round"/>
+                        <path d="M30 48c10-10 20-8 26 0-6 6-16 8-26 0z" fill="currentColor" opacity="0.35"/>
+                    </svg>
+                </div>
+                <h3>Parceria</h3>
+                <p>Unir esforços para um futuro melhor.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nossa Causa -->
+    <section id="causa" class="section">
+        <h2>Crianças que precisam de você</h2>
+        <p>Mais de 65% dos abrigos em SP são mantidos por ONGs e doações, sem verba pública. SP concentra cerca de 1/3 de todos os abrigos de crianças do Brasil. Brinquedos, roupas em bom estado, livros e materiais escolares são os itens mais necessários.</p>
+        <div class="cards">
+            <div class="card reveal">
+                <div class="image-placeholder">
+                    <svg class="illustration" viewBox="0 0 120 96" role="img" aria-label="Imagem de brinquedos coloridos">
+                        <rect x="26" y="34" width="68" height="46" rx="10" fill="currentColor" opacity="0.18"/>
+                        <rect x="36" y="24" width="24" height="18" rx="6" fill="currentColor" opacity="0.45"/>
+                        <rect x="60" y="24" width="24" height="18" rx="6" fill="currentColor" opacity="0.45"/>
+                        <circle cx="46" cy="62" r="6" fill="currentColor" opacity="0.55"/>
+                        <circle cx="74" cy="62" r="6" fill="currentColor" opacity="0.55"/>
+                    </svg>
+                </div>
+                <h3>Brinquedos</h3>
+                <p>Para alegrar o dia das crianças.</p>
+            </div>
+            <div class="card reveal">
+                <div class="image-placeholder">
+                    <svg class="illustration" viewBox="0 0 120 96" role="img" aria-label="Imagem de roupas organizadas">
+                        <path d="M30 28c0-8 6-14 14-14h32c8 0 14 6 14 14v16c0 4-4 8-8 8H38c-4 0-8-4-8-8V28z" fill="currentColor" opacity="0.18"/>
+                        <path d="M44 28c0-4 3-8 8-8h16c5 0 8 4 8 8v18c0 2-2 4-4 4H48c-2 0-4-2-4-4V28z" fill="currentColor" opacity="0.45"/>
+                        <path d="M54 18c0 4-3 6-6 6s-6-2-6-6 3-10 6-10 6 6 6 10z" fill="currentColor" opacity="0.55"/>
+                    </svg>
+                </div>
+                <h3>Roupas</h3>
+                <p>Roupas em bom estado para todos os tamanhos.</p>
+            </div>
+            <div class="card reveal">
+                <div class="image-placeholder">
+                    <svg class="illustration" viewBox="0 0 120 96" role="img" aria-label="Imagem de livros e materiais escolares">
+                        <path d="M26 22h40v52H26z" fill="currentColor" opacity="0.18"/>
+                        <path d="M30 26h32v44H30z" fill="currentColor" opacity="0.4"/>
+                        <path d="M64 26h24v44H64z" fill="currentColor" opacity="0.33"/>
+                        <path d="M30 36h32" stroke="currentColor" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+                        <path d="M30 52h32" stroke="currentColor" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+                        <path d="M64 36h24" stroke="currentColor" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+                        <path d="M64 52h24" stroke="currentColor" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+                    </svg>
+                </div>
+                <h3>Livros</h3>
+                <p>Materiais escolares e livros para aprendizado.</p>
+            </div>
+            <div class="card reveal">
+                <div class="image-placeholder">
+                    <svg class="illustration" viewBox="0 0 120 96" role="img" aria-label="Imagem de doação financeira">
+                        <path d="M32 30h56v36H32z" fill="currentColor" opacity="0.18"/>
+                        <path d="M36 26h48v28H36z" fill="currentColor" opacity="0.4"/>
+                        <circle cx="60" cy="44" r="10" fill="currentColor" opacity="0.55"/>
+                        <path d="M60 36v16" stroke="currentColor" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+                        <path d="M54 44h12" stroke="currentColor" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+                    </svg>
+                </div>
+                <h3>Dinheiro</h3>
+                <p>Doações financeiras para manutenção dos abrigos.</p>
+            </div>
+        </div>
+        <h3>Instituições Beneficiadas</h3>
+        <div class="cards">
+            <div class="card reveal">
+                <div class="card-image-container">
+                    <img src="assets/images/abrigo-reviver.jpg" alt="Abrigo Reviver" class="card-image" onerror="this.style.display='none'; this.parentElement.querySelector('.image-fallback').style.display='flex';">
+                    <div class="image-fallback">Abrigo Reviver</div>
+                </div>
+                <h3>Abrigo Reviver</h3>
+                <p>Vila Ida, SP | (11) 3021-5171</p>
+            </div>
+            <div class="card reveal">
+                <div class="card-image-container">
+                    <img src="assets/images/lalec.jpg" alt="LALEC Casa de Acolhimento" class="card-image" onerror="this.style.display='none'; this.parentElement.querySelector('.image-fallback').style.display='flex';">
+                    <div class="image-fallback">LALEC Casa de Acolhimento</div>
+                </div>
+                <h3>LALEC Casa de Acolhimento</h3>
+                <p>São Paulo, SP | lalec.com.br</p>
+            </div>
+            <div class="card reveal">
+                <div class="card-image-container">
+                    <img src="assets/images/casa-pequeno-cidadao.jpg" alt="Casa do Pequeno Cidadão" class="card-image" onerror="this.style.display='none'; this.parentElement.querySelector('.image-fallback').style.display='flex';">
+                    <div class="image-fallback">Casa do Pequeno Cidadão</div>
+                </div>
+                <h3>Casa do Pequeno Cidadão N. Sra. Aparecida</h3>
+                <p>Vila Leopoldina | (11) 98903-7798</p>
+            </div>
+            <div class="card reveal">
+                <div class="card-image-container">
+                    <img src="assets/images/lar-batista.jpg" alt="Lar Batista de Crianças" class="card-image" onerror="this.style.display='none'; this.parentElement.querySelector('.image-fallback').style.display='flex';">
+                    <div class="image-fallback">Lar Batista de Crianças</div>
+                </div>
+                <h3>Lar Batista de Crianças</h3>
+                <p>Várias unidades em SP | larbatista.com.br</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projeto Concreto -->
+    <section id="projeto" class="section">
+        <h2>Projeto Concreto — Mãos Cheias de Amor</h2>
+        <p><strong>Cada doação é um sorriso que você nunca vai esquecer.</strong></p>
+        <div class="timeline">
+            <div class="timeline-item reveal">
+                <span class="icon">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true"><path d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 14H5V9h14v9Zm0-11H5V6h14v1Z"/></svg>
+                </span>
+                <div>
+                    <h3>O que vai acontecer</h3>
+                    <p>Arrecadação de brinquedos, roupas, livros e doações financeiras na escola.</p>
+                </div>
+            </div>
+            <div class="timeline-item reveal">
+                <span class="icon">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z"/></svg>
+                </span>
+                <div>
+                    <h3>Onde</h3>
+                    <p>Escola Paulo de Tarso — pátio principal / hall de entrada.</p>
+                </div>
+            </div>
+            <div class="timeline-item reveal">
+                <span class="icon">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true"><path d="M12 8a4 4 0 1 0 4 4 4 4 0 0 0-4-4Zm0-5a1 1 0 0 1 1 1v2.09a7 7 0 1 1-2 0V4a1 1 0 0 1 1-1Zm7 7a7 7 0 0 1-7 7 1 1 0 0 1 0-2 5 5 0 0 0 5-5 1 1 0 0 1 2 0Zm-7 7a1 1 0 0 1-1-1v-1.09a7 7 0 0 1 2 0V19a1 1 0 0 1-1 1Z"/></svg>
+                </span>
+                <div>
+                    <h3>Quando</h3>
+                    <p>[SUBSTITUA com a data real do evento]</p>
+                </div>
+            </div>
+            <div class="timeline-item reveal">
+                <span class="icon">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true"><path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm0 2c-3.31 0-6 1.79-6 4v2h12v-2c0-2.21-2.69-4-6-4Z"/></svg>
+                </span>
+                <div>
+                    <h3>Como participar</h3>
+                    <p>Inscreva-se como voluntário e ajude na organização, divulgação e entrega.</p>
+                </div>
+            </div>
+        </div>
+        <div class="card reveal">
+            <h3>Condições das Doações</h3>
+            <p>Brinquedos e roupas em bom estado, livros sem rasuras, doações financeiras via PIX ou envelope.</p>
+        </div>
+    </section>
+
+    <!-- Formulário de Inscrição -->
+    <section id="inscrever" class="section">
+        <h2>Quero ser voluntário!</h2>
+        <div class="form-container" id="form-container">
+            <form id="volunteer-form">
+                <div class="form-group">
+                    <label for="nome">Nome completo *</label>
+                    <input type="text" id="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="idade">Idade *</label>
+                    <input type="number" id="idade" min="13" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail *</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="turma">Turma/Série *</label>
+                    <input type="text" id="turma" required>
+                </div>
+                <div class="form-group">
+                    <label>Tipo de ajuda</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="ajuda" value="organizar"> Organizar as doações na escola</label>
+                        <label><input type="checkbox" name="ajuda" value="divulgar"> Divulgar o projeto nas redes</label>
+                        <label><input type="checkbox" name="ajuda" value="entregar"> Ajudar na entrega nas instituições</label>
+                        <label><input type="checkbox" name="ajuda" value="trazer"> Trazer doações no dia</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit">Quero ser voluntário! 💛</button>
+            </form>
+            <div id="message" class="message"></div>
+        </div>
+    </section>
+
+    <!-- Seção de Créditos -->
+    <section id="creditos" class="credits">
+        <div class="credits-card">
+            <h2>Sobre o Desenvolvedor</h2>
+            <div class="card-image-container credits-photo-container">
+                <img src="assets/images/lucas.jpg" alt="Lucas Lohan Felix Araujo" class="photo" onerror="this.style.display='none'; this.parentElement.querySelector('.image-fallback').style.display='flex';">
+                <div class="image-fallback">Foto do desenvolvedor</div>
+            </div>
+            <div class="name">Lucas Lohan Felix Araujo</div>
+            <div class="subtitle">Desenvolvedor Web & Idealizador do Projeto</div>
+            <div class="school">Escola Paulo de Tarso - Turma: [SUBSTITUA com sua turma]</div>
+            <div class="badges">
+                <span class="badge">HTML5</span>
+                <span class="badge">CSS3</span>
+                <span class="badge">JavaScript</span>
+                <span class="badge">localStorage</span>
+            </div>
+            <div class="quote">"Tecnologia para impactar vidas e transformar comunidades."</div>
+            <div class="timeline-dev">
+                <span>💡 Ideia</span> → <span>🎨 Design</span> → <span>⌨️ Código</span> → <span>🚀 Publicação</span>
+            </div>
+            <div class="footer-dev">Desenvolvido com dedicação por Lucas Lohan Felix Araujo — 2026</div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Escola Paulo de Tarso — Projeto Mãos Cheias de Amor</p>
+        <p>"Cada doação é um sorriso que você nunca vai esquecer."</p>
+        <div class="links">
+            <a href="https://www.abrigoreviver.com.br" target="_blank">Abrigo Reviver</a>
+            <a href="https://lalec.com.br" target="_blank">LALEC</a>
+            <a href="https://casadopqcidadao.org.br" target="_blank">Casa do Pequeno Cidadão</a>
+            <a href="https://larbatista.com.br" target="_blank">Lar Batista de Crianças</a>
+        </div>
+        <p>Desenvolvido por Lucas Lohan Felix Araujo © 2026</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
