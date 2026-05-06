@@ -35,7 +35,8 @@ const elements = {
     impactTotal: document.getElementById('impact-total'),
     simulatorFeedback: document.getElementById('simulator-feedback'),
     saveImpactButton: document.querySelector('[data-save-impact]'),
-    clearImpactButton: document.querySelector('[data-clear-impact]')
+    clearImpactButton: document.querySelector('[data-clear-impact]'),
+    themeMeta: document.querySelector('meta[name="theme-color"]')
 };
 
 function readJSON(key, fallback) {
@@ -126,6 +127,10 @@ function applyTheme(theme) {
 
     if (elements.themeIcon) {
         elements.themeIcon.textContent = isDark ? '🌙' : '☀️';
+    }
+
+    if (elements.themeMeta) {
+        elements.themeMeta.setAttribute('content', isDark ? '#08111f' : '#0b63ce');
     }
 }
 
