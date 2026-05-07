@@ -5,6 +5,8 @@ const STORAGE_KEYS = {
     wallMessages: "mca_v2_wall_messages"
 };
 
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mdablkno";
+
 const defaultState = {
     volunteers: [],
     theme: "light",
@@ -283,7 +285,51 @@ function saveVolunteer(volunteer) {
     updateCounters();
 }
 
-function handleVolunteerSubmit(event) {
+function buildFormspreePayload(volunteer) {
+    const payload = new FormData();
+    payload.append("_subject", "Nova inscrição - Mãos Cheias de Amor");
+    payload.append("nome", volunteer.name);
+    payload.append("idade", String(volunteer.age));
+    payload.append("turma", volunteer.classroom);
+    payload.append("email", volunteer.email);
+    payload.append("tipo_de_doacao", volunteer.donationType);
+    payload.append("atividades", volunteer.tasks.join(", "));
+    payload.append("mensagem", volunteer.message || "Sem mensagem adicional.");
+    payload.append("data_da_inscricao", new Date(volunteer.createdAt).toLocaleString("pt-BR"));
+    payload.append("origem", "Site Mãos Cheias de Amor");
+    return payload;
+}
+
+async function sendVolunteerToFormspree(volunteer) {
+    const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: {
+            Accept: "application/json"
+        },
+        body: buildFormspreePayload(volunteer)
+    });
+
+    if (response.ok) {
+        return;
+    }
+
+    throw new Error("Nao foi possivel enviar a inscricao para o Formspree.");
+}
+
+function setFormBusy(isBusy) {
+    if (!elements.volunteerForm) {
+        return;
+    }
+
+    const submitButton = elements.volunteerForm.querySelector('button[type="submit"]');
+
+    if (submitButton) {
+        submitButton.disabled = isBusy;
+        submitButton.textContent = isBusy ? "Enviando inscrição..." : "Confirmar inscrição";
+    }
+}
+
+async function handleVolunteerSubmit(event) {
     event.preventDefault();
     hideStatus();
 
@@ -300,11 +346,21 @@ function handleVolunteerSubmit(event) {
         return;
     }
 
-    saveVolunteer(volunteer);
+    setFormBusy(true);
+    showStatus("Enviando sua inscrição para a organização da campanha...", "success");
 
-    const taskLabel = pluralize(volunteer.tasks.length, "atividade", "atividades");
-    showStatus(`Inscrição confirmada, ${volunteer.name}! Você escolheu ${volunteer.tasks.length} ${taskLabel} e prometeu contribuir com ${volunteer.donationType}.`, "success");
-    elements.volunteerForm.reset();
+    try {
+        await sendVolunteerToFormspree(volunteer);
+        saveVolunteer(volunteer);
+
+        const taskLabel = pluralize(volunteer.tasks.length, "atividade", "atividades");
+        showStatus(`Inscrição enviada, ${volunteer.name}! Você escolheu ${volunteer.tasks.length} ${taskLabel} e prometeu contribuir com ${volunteer.donationType}.`, "success");
+        elements.volunteerForm.reset();
+    } catch (error) {
+        showStatus("Não foi possível enviar agora. Verifique sua conexão e tente novamente.", "error");
+    } finally {
+        setFormBusy(false);
+    }
 }
 
 function prefillReturningVolunteer() {

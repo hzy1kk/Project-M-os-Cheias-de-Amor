@@ -432,6 +432,12 @@ h3 {
     transform: translateY(-2px);
 }
 
+.btn:disabled {
+    cursor: wait;
+    opacity: 0.68;
+    transform: none;
+}
+
 .btn-primary {
     color: white;
     background: linear-gradient(135deg, var(--orange-500), var(--orange-600));
