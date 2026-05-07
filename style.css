@@ -6,12 +6,14 @@
 
 :root {
     color-scheme: light;
-    --primary: #2f80ed;
-    --primary-strong: #1d5fd1;
-    --primary-soft: #dcecff;
-    --secondary: #ffb703;
-    --secondary-strong: #f59e0b;
-    --accent: #ef476f;
+    --primary: #0b63ce;
+    --primary-strong: #084b9b;
+    --primary-soft: #e7f1ff;
+    --secondary: #ff8a00;
+    --secondary-strong: #f97316;
+    --accent: #ffffff;
+    --accent-blue: #38bdf8;
+    --tricolor-gradient: linear-gradient(90deg, var(--secondary) 0 33%, #ffffff 33% 66%, var(--primary) 66% 100%);
     --success: #14b87a;
     --danger: #e5484d;
     --ink: #1c2838;
@@ -20,7 +22,7 @@
     --surface: #ffffff;
     --surface-soft: #f6f9ff;
     --surface-warm: #fff8eb;
-    --line: rgba(47, 128, 237, 0.16);
+    --line: rgba(11, 99, 206, 0.18);
     --shadow-sm: 0 10px 30px rgba(28, 40, 56, 0.08);
     --shadow-md: 0 18px 55px rgba(28, 40, 56, 0.13);
     --shadow-lg: 0 28px 80px rgba(28, 40, 56, 0.18);
@@ -36,12 +38,14 @@
 
 body.dark {
     color-scheme: dark;
-    --primary: #73b7ff;
-    --primary-strong: #9dccff;
-    --primary-soft: rgba(115, 183, 255, 0.14);
-    --secondary: #ffd166;
-    --secondary-strong: #ffc43d;
-    --accent: #ff7aa2;
+    --primary: #7cbcff;
+    --primary-strong: #b9ddff;
+    --primary-soft: rgba(124, 188, 255, 0.16);
+    --secondary: #ffb15c;
+    --secondary-strong: #ffcf8a;
+    --accent: #ffffff;
+    --accent-blue: #67e8f9;
+    --tricolor-gradient: linear-gradient(90deg, var(--secondary) 0 33%, #ffffff 33% 66%, var(--primary) 66% 100%);
     --success: #3ddc97;
     --danger: #ff6b6b;
     --ink: #f4f7fb;
@@ -71,11 +75,18 @@ body {
     font-family: var(--font);
     color: var(--ink);
     background:
-        radial-gradient(circle at top left, rgba(47, 128, 237, 0.16), transparent 34rem),
-        radial-gradient(circle at 90% 8%, rgba(255, 183, 3, 0.18), transparent 30rem),
-        linear-gradient(180deg, var(--surface-soft), var(--surface));
+        radial-gradient(circle at top left, rgba(11, 99, 206, 0.18), transparent 34rem),
+        radial-gradient(circle at 92% 10%, rgba(255, 138, 0, 0.2), transparent 30rem),
+        linear-gradient(180deg, #ffffff 0%, var(--surface-soft) 48%, var(--surface) 100%);
     line-height: 1.7;
     transition: background var(--transition-slow), color var(--transition-slow);
+}
+
+body.dark {
+    background:
+        radial-gradient(circle at top left, rgba(124, 188, 255, 0.16), transparent 34rem),
+        radial-gradient(circle at 92% 10%, rgba(255, 177, 92, 0.16), transparent 30rem),
+        linear-gradient(180deg, #08111f 0%, var(--surface-soft) 48%, var(--surface) 100%);
 }
 
 body.nav-open {
@@ -142,6 +153,17 @@ body.dark .site-header {
     background: rgba(11, 18, 32, 0.78);
 }
 
+.site-header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 4px;
+    background: var(--tricolor-gradient);
+    opacity: 0.95;
+}
+
 .site-header.is-scrolled {
     border-color: var(--line);
     box-shadow: var(--shadow-sm);
@@ -169,7 +191,7 @@ body.dark .site-header {
     height: 3rem;
     display: grid;
     place-items: center;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background: linear-gradient(135deg, var(--secondary), #ffffff 48%, var(--primary));
     border-radius: 18px;
     box-shadow: var(--shadow-sm);
 }
@@ -301,8 +323,8 @@ body.dark .site-header {
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(120deg, rgba(47, 128, 237, 0.08), rgba(255, 183, 3, 0.08)),
-        radial-gradient(circle at 28% 30%, rgba(239, 71, 111, 0.14), transparent 18rem);
+        linear-gradient(120deg, rgba(11, 99, 206, 0.1), rgba(255, 255, 255, 0.55), rgba(255, 138, 0, 0.12)),
+        radial-gradient(circle at 28% 30%, rgba(255, 138, 0, 0.18), transparent 18rem);
     pointer-events: none;
 }
 
@@ -431,14 +453,14 @@ body.dark .site-header {
 .btn-primary,
 .btn-submit {
     color: #fff;
-    background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+    background: linear-gradient(135deg, var(--primary), #1479e8 62%, var(--secondary));
     box-shadow: 0 16px 34px rgba(47, 128, 237, 0.28);
 }
 
 .btn-secondary {
     color: var(--ink);
-    background: rgba(255, 255, 255, 0.68);
-    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.86);
+    border: 1px solid rgba(11, 99, 206, 0.22);
     box-shadow: var(--shadow-sm);
 }
 
@@ -452,6 +474,79 @@ body.dark .btn-secondary {
     flex-wrap: wrap;
     gap: 0.75rem;
     margin-top: 1.5rem;
+}
+
+
+.palette-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1.25rem;
+    padding: 0.7rem;
+    width: fit-content;
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(11, 99, 206, 0.18);
+    border-radius: 999px;
+    box-shadow: var(--shadow-sm);
+}
+
+body.dark .palette-strip {
+    background: rgba(17, 24, 39, 0.76);
+}
+
+.palette-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 34px;
+    padding: 0.38rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 950;
+    letter-spacing: 0.01em;
+}
+
+.palette-chip::before {
+    content: "";
+    width: 0.72rem;
+    height: 0.72rem;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.55);
+}
+
+.palette-chip--orange {
+    color: #7a3500;
+    background: rgba(255, 138, 0, 0.16);
+}
+
+.palette-chip--orange::before {
+    background: var(--secondary);
+}
+
+.palette-chip--white {
+    color: var(--ink);
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(11, 99, 206, 0.16);
+}
+
+.palette-chip--white::before {
+    background: #ffffff;
+    border: 1px solid rgba(11, 99, 206, 0.25);
+}
+
+.palette-chip--blue {
+    color: #06366f;
+    background: rgba(11, 99, 206, 0.14);
+}
+
+.palette-chip--blue::before {
+    background: var(--primary);
+}
+
+body.dark .palette-chip--orange,
+body.dark .palette-chip--blue,
+body.dark .palette-chip--white {
+    color: var(--ink);
 }
 
 .hero__badges span,
@@ -540,7 +635,7 @@ body.dark .info-strip {
 .progress span {
     display: block;
     height: 100%;
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    background: var(--tricolor-gradient);
     border-radius: inherit;
     transition: width 700ms ease;
 }
@@ -656,7 +751,7 @@ body.dark .info-strip {
     position: absolute;
     inset: auto 1.5rem 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+    background: var(--tricolor-gradient);
     border-radius: 999px 999px 0 0;
     opacity: 0;
     transition: opacity var(--transition);
@@ -1143,7 +1238,10 @@ body.dark .message .error {
 .footer {
     padding: 2rem 0;
     color: #f8fafc;
-    background: #0f172a;
+    background:
+        linear-gradient(90deg, rgba(255, 138, 0, 0.18), transparent 28%, rgba(11, 99, 206, 0.18)),
+        #0f172a;
+    border-top: 5px solid var(--secondary);
 }
 
 .footer__grid {
@@ -1294,7 +1392,7 @@ body.dark .message .error {
     position: relative;
     padding: clamp(1.25rem, 4vw, 2rem);
     background:
-        linear-gradient(135deg, rgba(47, 128, 237, 0.12), rgba(255, 183, 3, 0.1)),
+        linear-gradient(135deg, rgba(11, 99, 206, 0.12), rgba(255, 255, 255, 0.62), rgba(255, 138, 0, 0.12)),
         var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
@@ -1309,7 +1407,7 @@ body.dark .message .error {
     height: 12rem;
     top: -5rem;
     right: -4rem;
-    background: radial-gradient(circle, rgba(239, 71, 111, 0.24), transparent 70%);
+    background: radial-gradient(circle, rgba(255, 138, 0, 0.25), transparent 70%);
     pointer-events: none;
 }
 
@@ -1360,7 +1458,7 @@ body.dark .simulator-grid label {
     margin: 1.2rem 0;
     padding: 1.3rem;
     color: #fff;
-    background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
     border-radius: 24px;
     box-shadow: 0 18px 40px rgba(47, 128, 237, 0.24);
 }
@@ -1487,9 +1585,15 @@ body.dark .simulator-grid label {
 
     .hero__actions,
     .hero__badges,
+    .palette-strip,
     .form-tips {
         align-items: stretch;
         flex-direction: column;
+    }
+
+    .palette-strip {
+        width: 100%;
+        border-radius: 22px;
     }
 
     .btn,
