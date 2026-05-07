@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Projeto Mãos Cheias de Amor, campanha voluntária da Escola Paulo de Tarso para arrecadar brinquedos, roupas, livros, materiais escolares e doações para lares de acolhimento.">
-    <title>Mãos Cheias de Amor | Escola Paulo de Tarso</title>
+    <meta name="description" content="Projeto Mãos Cheias de Amor, campanha voluntária do Colégio Paulo de Tarso para arrecadar brinquedos, roupas, livros, materiais escolares e doações para lares de acolhimento.">
+    <title>Mãos Cheias de Amor | Colégio Paulo de Tarso</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,10 +14,10 @@
         <nav class="navbar" aria-label="Navegação principal">
             <a class="brand" href="#inicio" aria-label="Ir para o início">
                 <span class="brand-mark" aria-hidden="true">
-                    <span>EPT</span>
+                    <span>CPT</span>
                 </span>
                 <span class="brand-copy">
-                    <strong>Escola Paulo de Tarso</strong>
+                    <strong>Colégio Paulo de Tarso</strong>
                     <small>Campanha solidária 2026</small>
                 </span>
             </a>
@@ -53,23 +53,28 @@
             <div class="hero-overlay"></div>
             <div class="container hero-grid">
                 <div class="hero-content reveal">
-                    <p class="eyebrow">Projeto voluntário da Escola Paulo de Tarso</p>
+                    <p class="eyebrow">Projeto voluntário do Colégio Paulo de Tarso</p>
                     <h1>Mãos Cheias de Amor</h1>
                     <p class="hero-lead">Cada doação é um sorriso que você ajuda a entregar.</p>
-                    <p class="hero-text">Uma campanha feita por estudantes para arrecadar brinquedos, roupas, livros, materiais escolares e apoio financeiro para crianças e adolescentes acolhidos em lares parceiros de São Paulo.</p>
+                    <p class="hero-text">Uma campanha feita por estudantes para transformar doações em kits de cuidado, leitura, brincadeira e dignidade para crianças e adolescentes acolhidos em lares parceiros de São Paulo.</p>
                     <div class="hero-actions">
                         <a class="btn btn-primary" href="#inscricao">Quero ser voluntário</a>
                         <a class="btn btn-ghost" href="#projeto">Ver ação completa</a>
                     </div>
+                    <ul class="hero-assurance" aria-label="Diferenciais da campanha">
+                        <li>Triagem responsável</li>
+                        <li>Metas transparentes</li>
+                        <li>Entrega organizada</li>
+                    </ul>
                 </div>
 
                 <aside class="hero-panel reveal" aria-label="Resumo da campanha">
                     <div class="school-card">
                         <div class="school-symbol" aria-hidden="true">
-                            <span>EPT</span>
+                            <span>CPT</span>
                         </div>
                         <div>
-                            <strong>Campanha oficial do projeto</strong>
+                            <strong>Campanha do Colégio Paulo de Tarso</strong>
                             <span>Voluntariado, doação e acolhimento</span>
                         </div>
                     </div>
@@ -89,7 +94,7 @@
                     </dl>
                     <div class="live-counter">
                         <span id="volunteer-counter">0</span>
-                        <small>voluntários confirmados neste navegador</small>
+                        <small>inscrições salvas neste navegador</small>
                     </div>
                 </aside>
             </div>
@@ -100,20 +105,20 @@
                 <div class="pulse-copy reveal">
                     <p class="eyebrow">Painel da campanha</p>
                     <h2>A comunidade acompanha o impacto em tempo real.</h2>
-                    <p>Este painel transforma a arrecadaÃ§Ã£o em uma meta visÃ­vel. A cada inscriÃ§Ã£o, o site atualiza o nÃºmero de voluntÃ¡rios, as promessas de doaÃ§Ã£o e o progresso geral da campanha.</p>
+                    <p>Este painel transforma a arrecadação em uma meta visível. A cada inscrição, o site atualiza o número de voluntários, as promessas de doação e o progresso geral da campanha.</p>
                 </div>
 
-                <div class="countdown-card reveal" aria-label="Contagem regressiva para a aÃ§Ã£o">
+                <div class="countdown-card reveal" aria-label="Contagem regressiva para a ação">
                     <span class="countdown-label">Faltam</span>
                     <strong id="countdown-days">--</strong>
-                    <span id="countdown-caption">dias para a aÃ§Ã£o</span>
+                    <span id="countdown-caption">dias para a ação</span>
                 </div>
             </div>
 
             <div class="container goal-board reveal" aria-label="Metas da campanha">
                 <article class="goal-card">
                     <div class="goal-card-header">
-                        <span>VoluntÃ¡rios</span>
+                        <span>Voluntários</span>
                         <strong><span id="goal-volunteers-current">0</span>/40</strong>
                     </div>
                     <div class="progress-track">
@@ -123,7 +128,7 @@
 
                 <article class="goal-card">
                     <div class="goal-card-header">
-                        <span>DoaÃ§Ãµes prometidas</span>
+                        <span>Doações prometidas</span>
                         <strong><span id="goal-items-current">0</span>/120</strong>
                     </div>
                     <div class="progress-track">
@@ -133,7 +138,7 @@
 
                 <article class="goal-card">
                     <div class="goal-card-header">
-                        <span>ForÃ§a da mobilizaÃ§Ã£o</span>
+                        <span>Força da mobilização</span>
                         <strong id="goal-score">0%</strong>
                     </div>
                     <div class="progress-track">
@@ -244,6 +249,24 @@
                         <p>Itens de cuidado pessoal e doações financeiras para necessidades específicas dos lares.</p>
                     </article>
                 </div>
+
+                <div class="donor-path reveal" aria-label="Caminho rápido para doadores">
+                    <article>
+                        <span>1</span>
+                        <strong>Escolha uma categoria</strong>
+                        <p>Brinquedo, roupa, livro, higiene ou contribuição financeira.</p>
+                    </article>
+                    <article>
+                        <span>2</span>
+                        <strong>Separe com carinho</strong>
+                        <p>Itens limpos, completos e prontos para uso chegam com mais dignidade.</p>
+                    </article>
+                    <article>
+                        <span>3</span>
+                        <strong>Registre sua ajuda</strong>
+                        <p>O formulário salva a inscrição e atualiza as metas da campanha.</p>
+                    </article>
+                </div>
             </div>
         </section>
 
@@ -251,8 +274,8 @@
             <div class="container simulator-layout">
                 <div class="simulator-copy reveal">
                     <p class="eyebrow">Simulador de impacto</p>
-                    <h2>Monte uma doaÃ§Ã£o e veja como ela pode ajudar.</h2>
-                    <p>O objetivo Ã© mostrar que a campanha nÃ£o depende apenas de grandes doaÃ§Ãµes. Pequenas contribuiÃ§Ãµes, quando somadas, viram kits reais para os lares.</p>
+                    <h2>Monte uma doação e veja como ela pode ajudar.</h2>
+                    <p>O objetivo é mostrar que a campanha não depende apenas de grandes doações. Pequenas contribuições, quando somadas, viram kits reais para os lares.</p>
                 </div>
 
                 <div class="simulator-panel reveal">
@@ -277,7 +300,7 @@
                     <div class="impact-result" aria-live="polite">
                         <span>Impacto estimado</span>
                         <strong id="sim-kits">0 kits</strong>
-                        <p id="sim-description">Ajuste os controles para estimar o alcance da doaÃ§Ã£o.</p>
+                        <p id="sim-description">Ajuste os controles para estimar o alcance da doação.</p>
                     </div>
                 </div>
             </div>
@@ -289,7 +312,7 @@
                     <div class="project-copy reveal">
                         <p class="eyebrow">Projeto concreto</p>
                         <h2>Mãos Cheias de Amor: arrecadação solidária com triagem, cuidado e entrega.</h2>
-                        <p>A ação será uma manhã de mobilização dentro da Escola Paulo de Tarso. Os voluntários receberão doações, separarão os itens por categoria, registrarão a participação da comunidade e prepararão kits para os lares beneficiados.</p>
+                        <p>A ação será uma manhã de mobilização dentro do Colégio Paulo de Tarso. Os voluntários receberão doações, separarão os itens por categoria, registrarão a participação da comunidade e prepararão kits para os lares beneficiados.</p>
                     </div>
 
                     <div class="project-details reveal">
@@ -415,9 +438,9 @@
         <section class="section section-wall" id="mural">
             <div class="container wall-layout">
                 <div class="wall-copy reveal">
-                    <p class="eyebrow">Mural solidÃ¡rio</p>
-                    <h2>Deixe uma mensagem para inspirar outros voluntÃ¡rios.</h2>
-                    <p>As mensagens ficam salvas neste navegador com localStorage. Na apresentaÃ§Ã£o, isso mostra outra funcionalidade real e deixa a campanha mais humana.</p>
+                    <p class="eyebrow">Mural solidário</p>
+                    <h2>Deixe uma mensagem para inspirar outros voluntários.</h2>
+                    <p>As mensagens ficam salvas neste navegador com localStorage. Na apresentação, isso mostra outra funcionalidade real e deixa a campanha mais humana.</p>
                 </div>
 
                 <div class="wall-panel reveal">
@@ -515,7 +538,7 @@
                 <div class="developer-info">
                     <p class="eyebrow">Desenvolvedor do site</p>
                     <h2>Lucas Lohan Felix Araujo</h2>
-                    <p class="developer-role">Aluno da Escola Paulo de Tarso | Desenvolvimento Web</p>
+                    <p class="developer-role">Aluno do Colégio Paulo de Tarso | Desenvolvimento Web</p>
                     <p>Este site foi desenvolvido em HTML, CSS e JavaScript puro para apresentar uma campanha voluntária conectada à escola, com identidade visual própria, formulário funcional, imagens locais e uma imagem criada por IA para representar o espírito da ação.</p>
                     <div class="tech-list" aria-label="Tecnologias utilizadas">
                         <span>HTML5</span>
@@ -545,7 +568,7 @@
                     </article>
                     <article class="presentation-card reveal">
                         <h3>Personalizações</h3>
-                        <p>Paleta laranja, branco e azul; logo escolar EPT; frase própria; imagens dos lares; foto do desenvolvedor; imagem de IA.</p>
+                        <p>Paleta laranja, branco e azul; marca escolar CPT; frase própria; imagens dos lares; foto do desenvolvedor; imagem de IA.</p>
                     </article>
                     <article class="presentation-card reveal">
                         <h3>Uso de localStorage</h3>
@@ -560,7 +583,7 @@
         <div class="container footer-grid">
             <div>
                 <strong>Mãos Cheias de Amor</strong>
-                <p>Campanha de voluntariado da Escola Paulo de Tarso.</p>
+                <p>Campanha de voluntariado do Colégio Paulo de Tarso.</p>
             </div>
             <div class="footer-links">
                 <a href="#inicio">Início</a>

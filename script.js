@@ -1,8 +1,8 @@
 const STORAGE_KEYS = {
-    volunteers: "mca_volunteers",
-    theme: "mca_theme",
-    lastEmail: "mca_last_email",
-    wallMessages: "mca_wall_messages"
+    volunteers: "mca_v2_volunteers",
+    theme: "mca_v2_theme",
+    lastEmail: "mca_v2_last_email",
+    wallMessages: "mca_v2_wall_messages"
 };
 
 const defaultState = {
@@ -11,13 +11,13 @@ const defaultState = {
     lastEmail: "",
     wallMessages: [
         {
-            name: "Equipe MÃ£os Cheias",
-            message: "Toda doaÃ§Ã£o organizada carrega respeito, cuidado e futuro.",
+            name: "Equipe Mãos Cheias",
+            message: "Toda doação organizada carrega respeito, cuidado e futuro.",
             createdAt: "2026-01-01T12:00:00.000Z"
         },
         {
-            name: "Escola Paulo de Tarso",
-            message: "Quando a comunidade se une, a solidariedade deixa de ser ideia e vira aÃ§Ã£o.",
+            name: "Colégio Paulo de Tarso",
+            message: "Quando a comunidade se une, a solidariedade deixa de ser ideia e vira ação.",
             createdAt: "2026-01-01T12:01:00.000Z"
         }
     ]
@@ -193,13 +193,13 @@ function updateCountdown() {
 
     if (diff <= 0) {
         elements.countdownDays.textContent = "0";
-        elements.countdownCaption.textContent = "a campanha jÃ¡ comeÃ§ou";
+        elements.countdownCaption.textContent = "a campanha já começou";
         return;
     }
 
     const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
     elements.countdownDays.textContent = String(days);
-    elements.countdownCaption.textContent = days === 1 ? "dia para a aÃ§Ã£o" : "dias para a aÃ§Ã£o";
+    elements.countdownCaption.textContent = days === 1 ? "dia para a ação" : "dias para a ação";
 }
 
 function showStatus(message, type) {
