@@ -1,19 +1,39 @@
 const STORAGE_KEYS = {
     volunteers: "mca_volunteers",
     theme: "mca_theme",
-    lastEmail: "mca_last_email"
+    lastEmail: "mca_last_email",
+    wallMessages: "mca_wall_messages"
 };
 
 const defaultState = {
     volunteers: [],
     theme: "light",
-    lastEmail: ""
+    lastEmail: "",
+    wallMessages: [
+        {
+            name: "Equipe MÃ£os Cheias",
+            message: "Toda doaÃ§Ã£o organizada carrega respeito, cuidado e futuro.",
+            createdAt: "2026-01-01T12:00:00.000Z"
+        },
+        {
+            name: "Escola Paulo de Tarso",
+            message: "Quando a comunidade se une, a solidariedade deixa de ser ideia e vira aÃ§Ã£o.",
+            createdAt: "2026-01-01T12:01:00.000Z"
+        }
+    ]
 };
 
 const state = {
     volunteers: readJson(STORAGE_KEYS.volunteers, defaultState.volunteers),
     theme: localStorage.getItem(STORAGE_KEYS.theme) || defaultState.theme,
-    lastEmail: localStorage.getItem(STORAGE_KEYS.lastEmail) || defaultState.lastEmail
+    lastEmail: localStorage.getItem(STORAGE_KEYS.lastEmail) || defaultState.lastEmail,
+    wallMessages: readJson(STORAGE_KEYS.wallMessages, defaultState.wallMessages)
+};
+
+const campaignGoals = {
+    volunteers: 40,
+    donations: 120,
+    eventDate: new Date("2026-06-20T08:00:00-03:00")
 };
 
 const elements = {
@@ -26,6 +46,26 @@ const elements = {
     volunteerCounter: document.getElementById("volunteer-counter"),
     dashboardTotal: document.getElementById("dashboard-total"),
     dashboardItems: document.getElementById("dashboard-items"),
+    goalVolunteersCurrent: document.getElementById("goal-volunteers-current"),
+    goalItemsCurrent: document.getElementById("goal-items-current"),
+    goalScore: document.getElementById("goal-score"),
+    goalVolunteersBar: document.getElementById("goal-volunteers-bar"),
+    goalItemsBar: document.getElementById("goal-items-bar"),
+    goalScoreBar: document.getElementById("goal-score-bar"),
+    countdownDays: document.getElementById("countdown-days"),
+    countdownCaption: document.getElementById("countdown-caption"),
+    simToys: document.getElementById("sim-toys"),
+    simClothes: document.getElementById("sim-clothes"),
+    simBooks: document.getElementById("sim-books"),
+    simToysValue: document.getElementById("sim-toys-value"),
+    simClothesValue: document.getElementById("sim-clothes-value"),
+    simBooksValue: document.getElementById("sim-books-value"),
+    simKits: document.getElementById("sim-kits"),
+    simDescription: document.getElementById("sim-description"),
+    wallForm: document.getElementById("wall-form"),
+    wallName: document.getElementById("wall-name"),
+    wallMessage: document.getElementById("wall-message"),
+    messageWall: document.getElementById("message-wall"),
     clearData: document.getElementById("clear-data"),
     volunteerForm: document.getElementById("volunteer-form"),
     formStatus: document.getElementById("form-status"),
@@ -95,9 +135,16 @@ function countPromisedItems() {
     }, 0);
 }
 
+function clampPercent(value, max) {
+    return Math.max(0, Math.min(100, Math.round((value / max) * 100)));
+}
+
 function updateCounters() {
     const total = state.volunteers.length;
     const items = countPromisedItems();
+    const volunteerPercent = clampPercent(total, campaignGoals.volunteers);
+    const itemPercent = clampPercent(items, campaignGoals.donations);
+    const score = Math.round((volunteerPercent + itemPercent) / 2);
 
     if (elements.volunteerCounter) {
         elements.volunteerCounter.textContent = String(total);
@@ -110,6 +157,49 @@ function updateCounters() {
     if (elements.dashboardItems) {
         elements.dashboardItems.textContent = String(items);
     }
+
+    if (elements.goalVolunteersCurrent) {
+        elements.goalVolunteersCurrent.textContent = String(total);
+    }
+
+    if (elements.goalItemsCurrent) {
+        elements.goalItemsCurrent.textContent = String(items);
+    }
+
+    if (elements.goalScore) {
+        elements.goalScore.textContent = `${score}%`;
+    }
+
+    if (elements.goalVolunteersBar) {
+        elements.goalVolunteersBar.style.width = `${volunteerPercent}%`;
+    }
+
+    if (elements.goalItemsBar) {
+        elements.goalItemsBar.style.width = `${itemPercent}%`;
+    }
+
+    if (elements.goalScoreBar) {
+        elements.goalScoreBar.style.width = `${score}%`;
+    }
+}
+
+function updateCountdown() {
+    if (!elements.countdownDays || !elements.countdownCaption) {
+        return;
+    }
+
+    const now = new Date();
+    const diff = campaignGoals.eventDate.getTime() - now.getTime();
+
+    if (diff <= 0) {
+        elements.countdownDays.textContent = "0";
+        elements.countdownCaption.textContent = "a campanha jÃ¡ comeÃ§ou";
+        return;
+    }
+
+    const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+    elements.countdownDays.textContent = String(days);
+    elements.countdownCaption.textContent = days === 1 ? "dia para a aÃ§Ã£o" : "dias para a aÃ§Ã£o";
 }
 
 function showStatus(message, type) {
@@ -246,6 +336,83 @@ function clearSavedData() {
     hideStatus();
 }
 
+function updateSimulator() {
+    if (!elements.simToys || !elements.simClothes || !elements.simBooks) {
+        return;
+    }
+
+    const toys = Number(elements.simToys.value);
+    const clothes = Number(elements.simClothes.value);
+    const books = Number(elements.simBooks.value);
+    const kits = Math.min(Math.floor(toys / 1), Math.floor(clothes / 2), Math.floor(books / 1));
+    const totalItems = toys + clothes + books;
+
+    elements.simToysValue.textContent = String(toys);
+    elements.simClothesValue.textContent = String(clothes);
+    elements.simBooksValue.textContent = String(books);
+    elements.simKits.textContent = `${kits} ${pluralize(kits, "kit", "kits")}`;
+
+    if (kits === 0) {
+        elements.simDescription.textContent = "Adicione pelo menos brinquedo, roupa e livro para formar um kit completo.";
+        return;
+    }
+
+    elements.simDescription.textContent = `${totalItems} itens podem formar ${kits} ${pluralize(kits, "kit", "kits")} com brinquedo, roupas e livro para encaminhar aos lares.`;
+}
+
+function escapeHtml(value) {
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+function renderWallMessages() {
+    if (!elements.messageWall) {
+        return;
+    }
+
+    const messages = state.wallMessages.slice(-5).reverse();
+
+    if (!messages.length) {
+        elements.messageWall.innerHTML = '<div class="empty-wall">Ainda não há mensagens. Seja a primeira pessoa a inspirar a campanha.</div>';
+        return;
+    }
+
+    elements.messageWall.innerHTML = messages.map((item) => {
+        return `
+            <article class="wall-message-card">
+                <strong>${escapeHtml(item.name)}</strong>
+                <p>${escapeHtml(item.message)}</p>
+            </article>
+        `;
+    }).join("");
+}
+
+function handleWallSubmit(event) {
+    event.preventDefault();
+
+    const name = elements.wallName.value.trim();
+    const message = elements.wallMessage.value.trim();
+
+    if (!name || !message) {
+        return;
+    }
+
+    state.wallMessages.push({
+        name,
+        message,
+        createdAt: new Date().toISOString()
+    });
+
+    state.wallMessages = state.wallMessages.slice(-12);
+    writeJson(STORAGE_KEYS.wallMessages, state.wallMessages);
+    elements.wallForm.reset();
+    renderWallMessages();
+}
+
 function setupRevealAnimations() {
     if (!("IntersectionObserver" in window)) {
         elements.reveals.forEach((element) => element.classList.add("is-visible"));
@@ -303,6 +470,24 @@ function setupForm() {
     }
 }
 
+function setupSimulator() {
+    const controls = [elements.simToys, elements.simClothes, elements.simBooks].filter(Boolean);
+
+    controls.forEach((control) => {
+        control.addEventListener("input", updateSimulator);
+    });
+
+    updateSimulator();
+}
+
+function setupWall() {
+    if (elements.wallForm) {
+        elements.wallForm.addEventListener("submit", handleWallSubmit);
+    }
+
+    renderWallMessages();
+}
+
 function setupTheme() {
     applyTheme(state.theme);
 
@@ -330,8 +515,11 @@ function init() {
     setupTheme();
     setupNavigation();
     setupForm();
+    setupSimulator();
+    setupWall();
     setupRevealAnimations();
     setupHeaderShadow();
+    updateCountdown();
     updateCounters();
 }
 

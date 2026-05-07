@@ -32,6 +32,7 @@
                 <li><a href="#voluntariado">Voluntariado</a></li>
                 <li><a href="#causa">Causa</a></li>
                 <li><a href="#projeto">Projeto</a></li>
+                <li><a href="#metas">Metas</a></li>
                 <li><a href="#lares">Lares</a></li>
                 <li><a href="#inscricao">Inscrição</a></li>
                 <li><a href="#desenvolvedor">Desenvolvedor</a></li>
@@ -91,6 +92,54 @@
                         <small>voluntários confirmados neste navegador</small>
                     </div>
                 </aside>
+            </div>
+        </section>
+
+        <section class="section section-pulse" id="metas">
+            <div class="container pulse-grid">
+                <div class="pulse-copy reveal">
+                    <p class="eyebrow">Painel da campanha</p>
+                    <h2>A comunidade acompanha o impacto em tempo real.</h2>
+                    <p>Este painel transforma a arrecadaÃ§Ã£o em uma meta visÃ­vel. A cada inscriÃ§Ã£o, o site atualiza o nÃºmero de voluntÃ¡rios, as promessas de doaÃ§Ã£o e o progresso geral da campanha.</p>
+                </div>
+
+                <div class="countdown-card reveal" aria-label="Contagem regressiva para a aÃ§Ã£o">
+                    <span class="countdown-label">Faltam</span>
+                    <strong id="countdown-days">--</strong>
+                    <span id="countdown-caption">dias para a aÃ§Ã£o</span>
+                </div>
+            </div>
+
+            <div class="container goal-board reveal" aria-label="Metas da campanha">
+                <article class="goal-card">
+                    <div class="goal-card-header">
+                        <span>VoluntÃ¡rios</span>
+                        <strong><span id="goal-volunteers-current">0</span>/40</strong>
+                    </div>
+                    <div class="progress-track">
+                        <span class="progress-fill" id="goal-volunteers-bar"></span>
+                    </div>
+                </article>
+
+                <article class="goal-card">
+                    <div class="goal-card-header">
+                        <span>DoaÃ§Ãµes prometidas</span>
+                        <strong><span id="goal-items-current">0</span>/120</strong>
+                    </div>
+                    <div class="progress-track">
+                        <span class="progress-fill" id="goal-items-bar"></span>
+                    </div>
+                </article>
+
+                <article class="goal-card">
+                    <div class="goal-card-header">
+                        <span>ForÃ§a da mobilizaÃ§Ã£o</span>
+                        <strong id="goal-score">0%</strong>
+                    </div>
+                    <div class="progress-track">
+                        <span class="progress-fill" id="goal-score-bar"></span>
+                    </div>
+                </article>
             </div>
         </section>
 
@@ -194,6 +243,42 @@
                         <h3>Higiene e apoio</h3>
                         <p>Itens de cuidado pessoal e doações financeiras para necessidades específicas dos lares.</p>
                     </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-simulator" id="simulador">
+            <div class="container simulator-layout">
+                <div class="simulator-copy reveal">
+                    <p class="eyebrow">Simulador de impacto</p>
+                    <h2>Monte uma doaÃ§Ã£o e veja como ela pode ajudar.</h2>
+                    <p>O objetivo Ã© mostrar que a campanha nÃ£o depende apenas de grandes doaÃ§Ãµes. Pequenas contribuiÃ§Ãµes, quando somadas, viram kits reais para os lares.</p>
+                </div>
+
+                <div class="simulator-panel reveal">
+                    <div class="simulator-controls" aria-label="Controles do simulador">
+                        <label>
+                            <span>Brinquedos</span>
+                            <input type="range" id="sim-toys" min="0" max="20" value="4">
+                            <strong id="sim-toys-value">4</strong>
+                        </label>
+                        <label>
+                            <span>Roupas</span>
+                            <input type="range" id="sim-clothes" min="0" max="40" value="8">
+                            <strong id="sim-clothes-value">8</strong>
+                        </label>
+                        <label>
+                            <span>Livros</span>
+                            <input type="range" id="sim-books" min="0" max="30" value="6">
+                            <strong id="sim-books-value">6</strong>
+                        </label>
+                    </div>
+
+                    <div class="impact-result" aria-live="polite">
+                        <span>Impacto estimado</span>
+                        <strong id="sim-kits">0 kits</strong>
+                        <p id="sim-description">Ajuste os controles para estimar o alcance da doaÃ§Ã£o.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -327,6 +412,32 @@
             </div>
         </section>
 
+        <section class="section section-wall" id="mural">
+            <div class="container wall-layout">
+                <div class="wall-copy reveal">
+                    <p class="eyebrow">Mural solidÃ¡rio</p>
+                    <h2>Deixe uma mensagem para inspirar outros voluntÃ¡rios.</h2>
+                    <p>As mensagens ficam salvas neste navegador com localStorage. Na apresentaÃ§Ã£o, isso mostra outra funcionalidade real e deixa a campanha mais humana.</p>
+                </div>
+
+                <div class="wall-panel reveal">
+                    <form class="wall-form" id="wall-form">
+                        <label class="field">
+                            <span>Seu nome</span>
+                            <input type="text" id="wall-name" name="wallName" maxlength="40" required>
+                        </label>
+                        <label class="field">
+                            <span>Mensagem curta</span>
+                            <textarea id="wall-message" name="wallMessage" maxlength="140" rows="3" required placeholder="Ex.: Eu vou ajudar porque todo cuidado importa."></textarea>
+                        </label>
+                        <button class="btn btn-secondary btn-full" type="submit">Publicar no mural</button>
+                    </form>
+
+                    <div class="message-wall" id="message-wall" aria-live="polite"></div>
+                </div>
+            </div>
+        </section>
+
         <section class="section section-form" id="inscricao">
             <div class="container form-layout">
                 <div class="form-copy reveal">
@@ -438,7 +549,7 @@
                     </article>
                     <article class="presentation-card reveal">
                         <h3>Uso de localStorage</h3>
-                        <p>Inscrições, contador de voluntários, itens prometidos, mensagem de retorno e preferência de tema.</p>
+                        <p>Inscrições, contador de voluntários, itens prometidos, mural solidário, mensagem de retorno e preferência de tema.</p>
                     </article>
                 </div>
             </div>

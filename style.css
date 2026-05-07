@@ -792,6 +792,228 @@ h3 {
     background: white;
 }
 
+.section-pulse {
+    background:
+        linear-gradient(135deg, rgba(249, 115, 22, 0.08), rgba(37, 99, 235, 0.08));
+}
+
+.pulse-grid,
+.simulator-layout,
+.wall-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.7fr);
+    gap: clamp(2rem, 6vw, 4rem);
+    align-items: center;
+}
+
+.pulse-copy p,
+.simulator-copy p,
+.wall-copy p {
+    color: var(--muted);
+    font-size: 1.05rem;
+}
+
+.countdown-card {
+    min-height: 320px;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    padding: 2rem;
+    border: 1px solid color-mix(in srgb, var(--orange-500) 26%, transparent);
+    border-radius: var(--radius-xl);
+    color: white;
+    text-align: center;
+    background:
+        radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.26), transparent 10rem),
+        linear-gradient(135deg, var(--orange-600), var(--blue-700));
+    box-shadow: var(--shadow-lift);
+}
+
+.countdown-label {
+    font-weight: 950;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.countdown-card strong {
+    margin: 0.35rem 0;
+    font-size: clamp(5rem, 12vw, 8rem);
+    line-height: 0.9;
+    letter-spacing: -0.08em;
+}
+
+.countdown-card span:last-child {
+    color: rgba(255, 255, 255, 0.82);
+    font-weight: 850;
+}
+
+.goal-board {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.goal-card {
+    padding: 1.3rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--white);
+    box-shadow: var(--shadow-card);
+}
+
+.goal-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.goal-card-header span {
+    color: var(--muted);
+    font-weight: 900;
+}
+
+.goal-card-header strong {
+    color: var(--orange-600);
+    font-size: 1.35rem;
+}
+
+.progress-track {
+    height: 0.82rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--blue-100) 68%, transparent);
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    display: block;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--orange-500), var(--blue-600));
+    transition: width 500ms ease;
+}
+
+.section-simulator {
+    background: var(--white);
+}
+
+.simulator-panel,
+.wall-panel {
+    padding: clamp(1.2rem, 4vw, 1.7rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-xl);
+    background: color-mix(in srgb, var(--white) 94%, transparent);
+    box-shadow: var(--shadow-lift);
+}
+
+.simulator-controls {
+    display: grid;
+    gap: 1rem;
+}
+
+.simulator-controls label {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.65rem 1rem;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 1.25rem;
+    background: var(--soft);
+}
+
+.simulator-controls span {
+    font-weight: 950;
+}
+
+.simulator-controls strong {
+    color: var(--orange-600);
+    font-size: 1.35rem;
+}
+
+.simulator-controls input {
+    grid-column: 1 / -1;
+    width: 100%;
+    accent-color: var(--orange-500);
+}
+
+.impact-result {
+    margin-top: 1rem;
+    padding: 1.4rem;
+    border-radius: var(--radius-lg);
+    color: white;
+    background: linear-gradient(135deg, var(--blue-700), var(--blue-900));
+}
+
+.impact-result span {
+    display: block;
+    color: var(--orange-200);
+    font-size: 0.78rem;
+    font-weight: 950;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.impact-result strong {
+    display: block;
+    margin: 0.25rem 0 0.4rem;
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    line-height: 1;
+}
+
+.impact-result p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.78);
+}
+
+.section-wall {
+    background:
+        linear-gradient(180deg, transparent, color-mix(in srgb, var(--blue-50) 70%, transparent), transparent);
+}
+
+.wall-form {
+    display: grid;
+    gap: 1rem;
+}
+
+.message-wall {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    max-height: 420px;
+    overflow: auto;
+    padding-right: 0.25rem;
+}
+
+.wall-message-card {
+    padding: 1rem;
+    border: 1px solid var(--line);
+    border-radius: 1.2rem;
+    background: var(--soft);
+}
+
+.wall-message-card strong {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: var(--blue-700);
+}
+
+.wall-message-card p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.empty-wall {
+    padding: 1rem;
+    border: 1px dashed var(--line);
+    border-radius: 1.2rem;
+    color: var(--muted);
+    text-align: center;
+    background: color-mix(in srgb, var(--soft) 74%, transparent);
+}
+
 .section-project {
     background:
         linear-gradient(180deg, transparent, color-mix(in srgb, var(--orange-50) 64%, transparent), transparent);
@@ -1211,6 +1433,18 @@ body.dark .donation-icon {
     background: rgba(249, 115, 22, 0.16);
 }
 
+body.dark .goal-card,
+body.dark .simulator-panel,
+body.dark .wall-panel,
+body.dark .wall-message-card {
+    background: color-mix(in srgb, var(--white) 86%, #172554 14%);
+}
+
+body.dark .simulator-controls label,
+body.dark .empty-wall {
+    background: #111c31;
+}
+
 body.dark .tech-list span {
     color: var(--blue-100);
     background: rgba(37, 99, 235, 0.2);
@@ -1261,6 +1495,9 @@ body.dark .field textarea:focus {
 
     .hero-grid,
     .two-column,
+    .pulse-grid,
+    .simulator-layout,
+    .wall-layout,
     .project-shell,
     .dashboard-grid,
     .form-layout,
@@ -1274,6 +1511,7 @@ body.dark .field textarea:focus {
 
     .impact-grid,
     .donation-cards,
+    .goal-board,
     .timeline,
     .home-grid,
     .presentation-grid {
@@ -1352,6 +1590,7 @@ body.dark .field textarea:focus {
 
     .impact-grid,
     .donation-cards,
+    .goal-board,
     .timeline,
     .home-grid,
     .presentation-grid,
