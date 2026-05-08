@@ -1068,6 +1068,34 @@ h3 {
     color: var(--muted);
 }
 
+.wall-message-card small {
+    display: block;
+    margin-top: 0.55rem;
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.wall-status {
+    margin: 0;
+    padding: 0.75rem 0.85rem;
+    border-radius: 0.9rem;
+    color: var(--blue-900);
+    background: var(--blue-50);
+    font-size: 0.88rem;
+    font-weight: 800;
+}
+
+.wall-status.success {
+    color: #14532d;
+    background: #dcfce7;
+}
+
+.wall-status.error {
+    color: #7f1d1d;
+    background: #fee2e2;
+}
+
 .empty-wall {
     padding: 1rem;
     border: 1px dashed var(--line);

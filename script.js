@@ -6,6 +6,7 @@ const STORAGE_KEYS = {
 };
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mdablkno";
+const WALL_API_ENDPOINT = document.querySelector('meta[name="wall-api-endpoint"]')?.content || "";
 
 const defaultState = {
     volunteers: [],
@@ -67,6 +68,7 @@ const elements = {
     wallForm: document.getElementById("wall-form"),
     wallName: document.getElementById("wall-name"),
     wallMessage: document.getElementById("wall-message"),
+    wallStatus: document.getElementById("wall-status"),
     messageWall: document.getElementById("message-wall"),
     clearData: document.getElementById("clear-data"),
     volunteerForm: document.getElementById("volunteer-form"),
@@ -425,6 +427,118 @@ function escapeHtml(value) {
         .replace(/'/g, "&#039;");
 }
 
+function normalizeWallMessages(messages) {
+    if (!Array.isArray(messages)) {
+        return [];
+    }
+
+    return messages
+        .map((item) => ({
+            name: String(item.name || "").trim().slice(0, 40),
+            message: String(item.message || "").trim().slice(0, 140),
+            createdAt: item.createdAt || new Date().toISOString()
+        }))
+        .filter((item) => item.name && item.message)
+        .slice(-12);
+}
+
+function persistWallMessages(messages) {
+    state.wallMessages = normalizeWallMessages(messages);
+    writeJson(STORAGE_KEYS.wallMessages, state.wallMessages);
+    renderWallMessages();
+}
+
+function getSharedWallEndpoint() {
+    return WALL_API_ENDPOINT.trim();
+}
+
+function setWallStatus(message, type = "info") {
+    if (!elements.wallStatus) {
+        return;
+    }
+
+    elements.wallStatus.hidden = !message;
+    elements.wallStatus.textContent = message;
+    elements.wallStatus.className = `wall-status ${type}`;
+}
+
+function setWallBusy(isBusy) {
+    if (!elements.wallForm) {
+        return;
+    }
+
+    const submitButton = elements.wallForm.querySelector('button[type="submit"]');
+
+    if (submitButton) {
+        submitButton.disabled = isBusy;
+        submitButton.textContent = isBusy ? "Publicando..." : "Publicar no mural";
+    }
+}
+
+async function requestSharedWallMessages() {
+    const endpoint = getSharedWallEndpoint();
+
+    if (!endpoint) {
+        setWallStatus("Modo local: configure um endpoint compartilhado para todos verem as publicações.", "info");
+        return;
+    }
+
+    try {
+        const response = await fetch(endpoint, {
+            method: "GET",
+            headers: {
+                Accept: "application/json"
+            },
+            cache: "no-store"
+        });
+
+        if (!response.ok) {
+            throw new Error("Nao foi possivel carregar o mural compartilhado.");
+        }
+
+        const data = await response.json();
+        const messages = Array.isArray(data) ? data : data.messages;
+        persistWallMessages(messages);
+        setWallStatus("Mural compartilhado carregado para todos os visitantes.", "success");
+    } catch (error) {
+        setWallStatus("Não foi possível carregar o mural compartilhado. Exibindo as mensagens salvas neste navegador.", "error");
+    }
+}
+
+async function sendSharedWallMessage(wallMessage) {
+    const endpoint = getSharedWallEndpoint();
+
+    if (!endpoint) {
+        persistWallMessages([...state.wallMessages, wallMessage]);
+        setWallStatus("Mensagem salva neste navegador. Para aparecer para todos, configure o endpoint compartilhado.", "info");
+        return;
+    }
+
+    const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(wallMessage)
+    });
+
+    if (!response.ok) {
+        throw new Error("Nao foi possivel publicar no mural compartilhado.");
+    }
+
+    const data = await response.json().catch(() => null);
+    const messages = Array.isArray(data) ? data : data && data.messages;
+
+    if (messages) {
+        persistWallMessages(messages);
+    } else {
+        persistWallMessages([...state.wallMessages, wallMessage]);
+    }
+
+    setWallStatus("Mensagem publicada no mural compartilhado.", "success");
+}
+
 function renderWallMessages() {
     if (!elements.messageWall) {
         return;
@@ -438,35 +552,46 @@ function renderWallMessages() {
     }
 
     elements.messageWall.innerHTML = messages.map((item) => {
+        const date = item.createdAt ? new Date(item.createdAt).toLocaleDateString("pt-BR") : "";
+
         return `
             <article class="wall-message-card">
                 <strong>${escapeHtml(item.name)}</strong>
                 <p>${escapeHtml(item.message)}</p>
+                ${date ? `<small>Publicado em ${escapeHtml(date)}</small>` : ""}
             </article>
         `;
     }).join("");
 }
 
-function handleWallSubmit(event) {
+async function handleWallSubmit(event) {
     event.preventDefault();
 
     const name = elements.wallName.value.trim();
     const message = elements.wallMessage.value.trim();
 
     if (!name || !message) {
+        setWallStatus("Preencha seu nome e uma mensagem para publicar.", "error");
         return;
     }
 
-    state.wallMessages.push({
+    const wallMessage = {
         name,
         message,
         createdAt: new Date().toISOString()
-    });
+    };
 
-    state.wallMessages = state.wallMessages.slice(-12);
-    writeJson(STORAGE_KEYS.wallMessages, state.wallMessages);
-    elements.wallForm.reset();
-    renderWallMessages();
+    setWallBusy(true);
+    setWallStatus("Publicando sua mensagem...", "info");
+
+    try {
+        await sendSharedWallMessage(wallMessage);
+        elements.wallForm.reset();
+    } catch (error) {
+        setWallStatus("Não foi possível publicar no mural compartilhado. Tente novamente em instantes.", "error");
+    } finally {
+        setWallBusy(false);
+    }
 }
 
 function setupRevealAnimations() {
@@ -542,6 +667,7 @@ function setupWall() {
     }
 
     renderWallMessages();
+    requestSharedWallMessages();
 }
 
 function setupTheme() {
