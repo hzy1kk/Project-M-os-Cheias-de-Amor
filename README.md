@@ -8,6 +8,7 @@ Site de voluntariado escolar desenvolvido para o Projeto Mãos Cheias de Amor da
 
 - **Formulário de Inscrição**: Cadastro único por e-mail com validação
 - **Contador de Voluntários**: Persistência via localStorage
+- **Mural Solidário**: suporte a endpoint compartilhado para mensagens públicas, com fallback local quando não configurado
 - **Tema Claro/Escuro**: Toggle com preferência salva
 - **Design Responsivo**: Compatível com todos os dispositivos
 - **Animações Suaves**: Scroll reveal e transições modernas
@@ -18,6 +19,22 @@ Site de voluntariado escolar desenvolvido para o Projeto Mãos Cheias de Amor da
 - **CSS3**: Design moderno com variáveis CSS
 - **JavaScript**: Interatividade e localStorage
 - **SVG**: Ícones vetoriais inline
+
+
+## 🌐 Mural compartilhado
+
+O site já vem apontando para `api/wall-messages.php`, que salva as publicações em um arquivo JSON no servidor quando a hospedagem executa PHP. Se você preferir outro backend/serviço, ele precisa aceitar CORS e:
+
+- `GET`: retorna um array de mensagens ou um objeto `{ "messages": [...] }`
+- `POST`: recebe `{ "name": "...", "message": "...", "createdAt": "..." }` e retorna a lista atualizada
+
+Para trocar o backend, coloque a nova URL no meta tag do `index.html`:
+
+```html
+<meta name="wall-api-endpoint" content="https://seu-endpoint.com/mural">
+```
+
+Se a URL estiver vazia ou indisponível, o site mostra um aviso e salva a mensagem apenas no navegador atual. Em hospedagens estáticas que não executam PHP, como GitHub Pages puro, será necessário configurar outro endpoint.
 
 ## 📱 Compatibilidade
 

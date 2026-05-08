@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Projeto Mãos Cheias de Amor, campanha voluntária do Colégio Paulo de Tarso para arrecadar brinquedos, roupas, livros, materiais escolares e doações para lares de acolhimento.">
+    <meta name="wall-api-endpoint" content="api/wall-messages.php">
     <title>Mãos Cheias de Amor | Colégio Paulo de Tarso</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -440,7 +441,7 @@
                 <div class="wall-copy reveal">
                     <p class="eyebrow">Mural solidário</p>
                     <h2>Deixe uma mensagem para inspirar outros voluntários.</h2>
-                    <p>As mensagens ficam salvas neste navegador com localStorage. Na apresentação, isso mostra outra funcionalidade real e deixa a campanha mais humana.</p>
+                    <p>As mensagens podem ser conectadas a um endpoint compartilhado para aparecerem para todos os visitantes. Se o endpoint não estiver configurado, o site avisa e mantém uma cópia local no navegador.</p>
                 </div>
 
                 <div class="wall-panel reveal">
@@ -454,6 +455,7 @@
                             <textarea id="wall-message" name="wallMessage" maxlength="140" rows="3" required placeholder="Ex.: Eu vou ajudar porque todo cuidado importa."></textarea>
                         </label>
                         <button class="btn btn-secondary btn-full" type="submit">Publicar no mural</button>
+                        <p class="wall-status" id="wall-status" hidden></p>
                     </form>
 
                     <div class="message-wall" id="message-wall" aria-live="polite"></div>
@@ -572,8 +574,8 @@
                         <p>Paleta laranja, branco e azul; marca escolar CPT; frase própria; imagens dos lares; foto do desenvolvedor; imagem de IA.</p>
                     </article>
                     <article class="presentation-card reveal">
-                        <h3>Uso de localStorage</h3>
-                        <p>Inscrições, contador de voluntários, itens prometidos, mural solidário, mensagem de retorno e preferência de tema.</p>
+                        <h3>Persistência dos dados</h3>
+                        <p>Inscrições, contador de voluntários, itens prometidos, preferência de tema e mural com suporte a endpoint compartilhado.</p>
                     </article>
                 </div>
             </div>
