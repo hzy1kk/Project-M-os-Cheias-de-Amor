@@ -101,10 +101,23 @@ function pluralize(value, singular, plural) {
     return value === 1 ? singular : plural;
 }
 
-function applyTheme(theme) {
+function applyTheme(theme, animate = false) {
     const isDark = theme === "dark";
+
+    if (animate) {
+        elements.body.classList.remove("theme-changing");
+        void elements.body.offsetWidth;
+        elements.body.classList.add("theme-changing");
+        window.setTimeout(() => elements.body.classList.remove("theme-changing"), 760);
+    }
+
     elements.body.classList.toggle("dark", isDark);
     localStorage.setItem(STORAGE_KEYS.theme, theme);
+
+    if (elements.themeToggle) {
+        elements.themeToggle.setAttribute("aria-pressed", String(isDark));
+        elements.themeToggle.setAttribute("aria-label", isDark ? "Alternar para tema claro" : "Alternar para tema escuro");
+    }
 
     if (elements.themeIcon) {
         elements.themeIcon.textContent = isDark ? "☾" : "☀";
@@ -117,7 +130,7 @@ function applyTheme(theme) {
 
 function toggleTheme() {
     state.theme = elements.body.classList.contains("dark") ? "light" : "dark";
-    applyTheme(state.theme);
+    applyTheme(state.theme, true);
 }
 
 function toggleMenu() {
